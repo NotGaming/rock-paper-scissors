@@ -1,0 +1,94 @@
+.frame {
+  position: relative;
+  margin-left: 25%;
+  display: block;
+  height: 550px;
+  width: 50%;
+  background-color: #F0F8FF;
+}
+
+.title {
+  top: 5px;
+  text-align: center;
+  background-color: SteelBlue;
+  color: white;
+}
+
+.instructions p {
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.button-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input.rock {
+  width: 100px;
+  height: 50px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+input.paper {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+input.scissors {
+  width: 100px;
+  height: 50px;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+div.gameTexts {
+  margin-top: 50px;
+  display: block;
+  align-items: center;
+  margin-top: 40px;
+}
+
+p.userMove {
+  align-content: center;;
+  text-align: center;
+}
+
+p.computerMove {
+  text-align: center;
+}
+
+p.gameResults {
+  margin-top: 60px;
+  text-align: center;
+}
+
+div.results {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+}
+
+table {
+  margin-left: 25%;
+  width: 50%;
+}
+
+table, th, td {
+  padding: 15px;
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: PapayaWhip;
+}
+
+td {
+  background-color: white;
+  text-align: center;
+}
