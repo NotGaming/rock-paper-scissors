@@ -1,35 +1,23 @@
 
 const txtRock = "Rock crushes Scissors!"
 const txtPaper = "Paper covers Rock!"
-const txtScissors = "Scissors cut Paper!"
+const txtScissors = "Scissors cuts Paper!"
 const txtDraw = "It's a draw!"
 let gameResults = document.querySelector("p.gameResults")
-wins = document.getElementById("results-table").rows[1].cells[0]
-losses = document.getElementById("results-table").rows[1].cells[1]
-draws = document.getElementById("results-table").rows[1].cells[2]
+let userMove = document.querySelector("p.userMove")
+let computerMove = document.querySelector("p.computerMove")
+let wins = document.getElementById("results-table").rows[1].cells[0]
+let losses = document.getElementById("results-table").rows[1].cells[1]
+let draws = document.getElementById("results-table").rows[1].cells[2]
 
 function playGame(objButton){
   let userSelection = objButton.value
-  let userMove = document.querySelector("p.userMove")
-  let computerMove = document.querySelector("p.computerMove")
   let computerSelection = computerPlay();
   userMove.textContent = 'You have selected ' + userSelection + '.'
   computerMove.textContent = 'The computer went with ' + computerSelection + '.'
+  checkScoreReset();
   playRound(computerSelection, userSelection);
-
-  if (checkGameOver() == true) {
-    if (Number(wins.innerHTML) > Number(losses.innerHTML)){
-      alert("The game is over! You won!");
-    } else {
-      alert("The game is over! You lost!");
-    }
-    userMove.textContent = '';
-    computerMove.textContent = '';
-    wins.textContent = 0;
-    losses.textContent = 0;
-    draws.textContent = 0;
-    gameResults.textContent = 'Ready to play again?';
-  }
+  checkGameOver();
 };
 
 function computerPlay() {
@@ -44,7 +32,6 @@ function computerPlay() {
 };
 
 function playRound(computerSelection, userSelection) {
-
   switch (checkRoundWinner(computerSelection, userSelection)) {
     case "Winner": wins.textContent = Number(wins.innerHTML) + 1
       break;
@@ -58,6 +45,7 @@ function playRound(computerSelection, userSelection) {
 function checkRoundWinner(computerSelection, userSelection) {
 
   if (userSelection == "Rock") {
+
     if (computerSelection == "Scissors") {
       gameResults.textContent = txtRock;
       return "Winner";
@@ -70,6 +58,7 @@ function checkRoundWinner(computerSelection, userSelection) {
     }
 
   } else if (userSelection == "Paper") {
+
     if (computerSelection == "Rock") {
       gameResults.textContent = txtPaper;
       return "Winner";
@@ -82,6 +71,7 @@ function checkRoundWinner(computerSelection, userSelection) {
     }
 
   } else if (userSelection == "Scissors") {
+
     if (computerSelection == "Paper") {
       gameResults.textContent = txtScissors
       return "Winner";
@@ -96,12 +86,38 @@ function checkRoundWinner(computerSelection, userSelection) {
 };
 
 function checkGameOver() {
-
   let cntWins = Number(wins.innerHTML);
   let cntLosses = Number(losses.innerHTML);
   let cntDraws = Number(draws.innerHTML);
 
-  if (cntWins + cntLosses + cntDraws == 5) {
-    return true;
+  if (cntWins == 3){
+    alert("The game is over! You won!");
+    gameResults.textContent = 'Ready to play again?';
+  } else if (cntLosses == 3){
+    alert("The game is over! You lost!")
+    gameResults.textContent = 'Ready to play again?';
+  } else if (cntDraws == 2 && cntWins == 2){
+      alert("The game is over! You won!");
+      gameResults.textContent = 'Ready to play again?';
+  } else if (cntDraws == 2 && cntLosses == 2){
+      alert("The game is over! You lost!");
+      gameResults.textContent = 'Ready to play again?';
+  } else if (cntWins + cntLosses + cntDraws == 5) {
+    if (cntWins > cntLosses) {
+      alert("The game is over! You won!");
+    } else if (cntWins < cntLosses){
+      alert("The game is over! You lost!");
+    } else {
+      alert("The game ends in a draw!")
+    }
+    gameResults.textContent = 'Ready to play again?';
   }
 };
+
+function checkScoreReset() {
+  if (gameResults.textContent == "Ready to play again?") {
+    wins.textContent = 0;
+    losses.textContent = 0;
+    draws.textContent = 0;
+  }
+}
